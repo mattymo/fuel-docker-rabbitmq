@@ -25,9 +25,14 @@ RUN apt-get -qq update > /dev/null
 RUN apt-get -qq -y install rabbitmq-server > /dev/null
 RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_management
 
-EXPOSE 5672 15672 4369
 ADD rabbitmq.config /etc/rabbitmq/rabbitmq.config
 RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_stomp
 ADD start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
+
+EXPOSE 4369
+EXPOSE 5672
+EXPOSE 15672
+EXPOSE 61613
+
 CMD /usr/local/bin/start.sh
