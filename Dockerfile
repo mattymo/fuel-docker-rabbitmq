@@ -25,6 +25,7 @@ RUN apt-get -qq update > /dev/null
 RUN apt-get -qq -y install rabbitmq-server > /dev/null
 RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_management
 
+RUN mkdir -p /var/www/nailgun
 ADD rabbitmq.config /etc/rabbitmq/rabbitmq.config
 RUN /usr/sbin/rabbitmq-plugins enable rabbitmq_stomp
 ADD start.sh /usr/local/bin/start.sh
